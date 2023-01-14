@@ -1,5 +1,8 @@
+from src.bouncing_ball import bounce
+
+
 def main():
-    pass
+    bounce()
 
 
 if __name__ == '__main__':
