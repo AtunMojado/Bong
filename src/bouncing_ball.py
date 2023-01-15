@@ -3,6 +3,8 @@ import time
 
 import pygame
 
+from src.paddle import Paddle
+
 
 def bounce():
     pygame.init()
@@ -24,18 +26,17 @@ def bounce():
 
     ball = pygame.image.load("../res/intro_ball.gif")
     ball_rect = ball.get_rect()
-    paddle_left = pygame.Rect(margin_to_border, size[1] / 2 - paddle_size[1] / 2, paddle_size[0], paddle_size[1])
-    paddle_right = pygame.Rect(size[0] - margin_to_border - paddle_size[0], size[1]/ 2 - paddle_size[1] / 2, paddle_size[0], paddle_size[1])
+    paddle_left = Paddle(left=margin_to_border, top=int(size[1] / 2 - paddle_size[1] / 2), width=paddle_size[0], height=paddle_size[1], color=(0, 0, 0), speed=8, screen=screen)
+    paddle_right = Paddle(left=size[0] - margin_to_border - paddle_size[0], top=int(size[1]/ 2 - paddle_size[1] / 2), width=paddle_size[0], height=paddle_size[1], color=(255, 255, 255), speed=8, screen=screen)
     while True:
         for event in pygame.event.get():
             counter = time.time()
             if event.type == pygame.QUIT or (event.type == pygame.KEYDOWN and event.key == pygame.K_ESCAPE):
                 sys.exit()
-
-            if pygame.key.get_pressed()[pygame.K_w] and paddle_left.top > 0:
-                paddle_left = paddle_left.move(0, -8)
-            if pygame.key.get_pressed()[pygame.K_s] and paddle_left.bottom < size[1]:
-                paddle_left = paddle_left.move(0, 8)
+            if pygame.key.get_pressed()[pygame.K_w]:
+                paddle_left.up()
+            if pygame.key.get_pressed()[pygame.K_s]:
+                paddle_left.down()
         if time.time() - counter > screen_saver_time:
             screen.fill(BLACK)
             if ball_rect.right > size[0]:
@@ -50,7 +51,7 @@ def bounce():
             screen.blit(ball, ball_rect)
         else:
             screen.fill(GRAY)
-            pygame.draw.rect(screen, (0, 0, 0), paddle_left)
-            pygame.draw.rect(screen, (255, 255, 255), paddle_right)
+            paddle_left.draw()
+            paddle_right.draw()
         pygame.display.flip()
         time.sleep(0.05)
