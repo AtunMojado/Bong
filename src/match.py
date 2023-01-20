@@ -21,14 +21,23 @@ class Match:
     def update(self, events: List[pygame.event.Event]):
         """ Updates the state with the given events """
         for event in events:
-            if event.type == pygame.KEYDOWN and event.key == pygame.K_w:
+            keys = pygame.key.get_pressed()
+            if keys[pygame.K_w]:
                 self._left_paddle.up()
-            if event.type == pygame.KEYDOWN and event.key == pygame.K_s:
+            if keys[pygame.K_s]:
                 self._left_paddle.down()
-            if event.type == pygame.KEYDOWN and event.key == pygame.K_UP:
+            if keys[pygame.K_n]:
                 self._right_paddle.up()
-            if event.type == pygame.KEYDOWN and event.key == pygame.K_DOWN:
+            if keys[pygame.K_m]:
                 self._right_paddle.down()
+
+
+            #if event.type == pygame.KEYDOWN and event.key == pygame.K_s:
+                #self._left_paddle.down()
+            #if event.type == pygame.KEYDOWN and event.key == pygame.K_UP:
+                #self._right_paddle.up()
+            #if event.type == pygame.KEYDOWN and event.key == pygame.K_DOWN:
+                #self._right_paddle.down()
 
     def display(self):
         """ Displays the current match """
