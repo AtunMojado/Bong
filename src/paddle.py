@@ -6,7 +6,8 @@ import pygame
 class Paddle:
     """ Rectangular object that allows you to hit the ball """
 
-    def __init__(self, left: int, top: int, width: int, height: int, speed: int, color: Tuple[int, int, int], screen: pygame.Surface):
+    def __init__(self, left: int, top: int, width: int, height: int, speed: int, color: Tuple[int, int, int],
+                 screen: pygame.Surface):
         self._rect = pygame.Rect(left, top, width, height)
         self._speed = speed
         self._color = color
@@ -22,3 +23,6 @@ class Paddle:
 
     def draw(self):
         pygame.draw.rect(self._screen, self._color, self._rect)
+
+    def change_color(self, color):
+        self._color = color
