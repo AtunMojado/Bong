@@ -31,14 +31,6 @@ class Match:
             if keys[pygame.K_m]:
                 self._right_paddle.down()
 
-
-            #if event.type == pygame.KEYDOWN and event.key == pygame.K_s:
-                #self._left_paddle.down()
-            #if event.type == pygame.KEYDOWN and event.key == pygame.K_UP:
-                #self._right_paddle.up()
-            #if event.type == pygame.KEYDOWN and event.key == pygame.K_DOWN:
-                #self._right_paddle.down()
-
     def display(self):
         """ Displays the current match """
         self._screen.fill(self._screen_color)
