@@ -20,6 +20,17 @@ class Ball:
 
     def move(self):
         self._center = (self._center[0] + self._speed[0], self._center[1] + self._speed[1])
+        if self._center[1] + self._radius > self._screen.get_size()[1]:
+            self._speed = (self._speed[0], -self._speed[1])
+        if self._center[0] + self._radius > self._screen.get_size()[0]:
+            self._speed = (-self._speed[0], self._speed[1])
+        if self._center[1] - self._radius < 0:
+            self._speed = (self._speed[0], -self._speed[1])
+        if self._center[0] - self._radius < 0:
+            self._speed = (-self._speed[0], self._speed[1])
+
+
+
 
 
 
