@@ -24,20 +24,18 @@ class Match:
         self._ball = Ball(color=(0, 15, 150), radius=15, center= ball_position, speed= ball_speed, screen=screen)
         self._screen_color = screen_color
 
-    def update(self, events: List[pygame.event.Event]):
+    def update(self):
         """ Updates the state with the given events """
-        for event in events:
-            keys = pygame.key.get_pressed()
-            if keys[pygame.K_w]:
-                self._left_paddle.up()
-            if keys[pygame.K_s]:
-                self._left_paddle.down()
-            if keys[pygame.K_n]:
-                self._right_paddle.up()
-            if keys[pygame.K_m]:
-                self._right_paddle.down()
-            if keys[pygame.K_SPACE]:
-                self._ball.movement()
+        keys = pygame.key.get_pressed()
+        if keys[pygame.K_w]:
+            self._left_paddle.up()
+        if keys[pygame.K_s]:
+            self._left_paddle.down()
+        if keys[pygame.K_n]:
+            self._right_paddle.up()
+        if keys[pygame.K_m]:
+            self._right_paddle.down()
+        self._ball.move()
 
     def display(self):
         """ Displays the current match """
@@ -45,4 +43,3 @@ class Match:
         self._left_paddle.draw()
         self._right_paddle.draw()
         self._ball.draw()
-        self._ball.movement()

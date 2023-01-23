@@ -16,13 +16,13 @@ def bounce():
 
     while True:
         events = pygame.event.get()
-        match.update(events)
-        screen_saver.update(events)
         for event in events:
             if event.type == pygame.QUIT or (event.type == pygame.KEYDOWN and event.key == pygame.K_ESCAPE):
                 sys.exit()
         if screen_saver.active():
             screen_saver.display()
+        screen_saver.update(events)
+        match.update()
         match.display()
         pygame.display.flip()
         time.sleep(0.05)
