@@ -35,7 +35,7 @@ class Match:
             self._right_paddle.up()
         if keys[pygame.K_m]:
             self._right_paddle.down()
-        self._ball.move()
+        self._ball.move(self._left_paddle, self._right_paddle)
 
     def display(self):
         """ Displays the current match """

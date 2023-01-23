@@ -13,6 +13,10 @@ class Paddle:
         self._color = color
         self._screen = screen
 
+    @property
+    def rect(self) -> pygame.Rect:
+        return self._rect
+
     def up(self):
         if self._rect.top > 0:
             self._rect = self._rect.move(0, -self._speed)

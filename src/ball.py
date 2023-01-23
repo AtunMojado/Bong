@@ -1,6 +1,7 @@
 from typing import Tuple, List
 import pygame
 
+from src.paddle import Paddle
 
 
 class Ball:
@@ -18,8 +19,13 @@ class Ball:
     def draw(self):
         pygame.draw.circle(self._screen, self._color, self._center, self._radius)
 
-    def move(self):
+    def move(self, left_paddle: Paddle, right_paddle: Paddle):
         self._center = (self._center[0] + self._speed[0], self._center[1] + self._speed[1])
+        self.wall_collision()
+        self.paddle_collision()
+
+
+    def wall_collision(self):
         if self._center[1] + self._radius > self._screen.get_size()[1]:
             self._speed = (self._speed[0], -self._speed[1])
         if self._center[0] + self._radius > self._screen.get_size()[0]:
@@ -28,7 +34,8 @@ class Ball:
             self._speed = (self._speed[0], -self._speed[1])
         if self._center[0] - self._radius < 0:
             self._speed = (-self._speed[0], self._speed[1])
-
+    def paddle_collision(self):
+        pass
 
 
 
