@@ -2,6 +2,7 @@ from typing import List, Tuple
 
 import pygame
 import pygame.event
+from pygame.event import Event
 
 from src.paddle import Paddle
 from src.ball import Ball
@@ -25,24 +26,20 @@ class Match:
                                     height=paddle_size[1], color=(255, 255, 255), speed=8, screen=screen)
         self._ball = Ball(color=(0, 15, 150), radius=11, center= ball_position, speed= ball_speed, screen=screen)
         self._screen_color = screen_color
-        running = False
+        self._running = False
 
 
 
 
-    def update(self):
+    def update(self, events: List[Event]):
         """ Updates the state with the given events """
 
         keys = pygame.key.get_pressed()
-        events = pygame.event.get()
 
+        if keys[pygame.K_SPACE]:
+            self._running = True
 
-        for event in events:
-            if event.type == pygame.KEYDOWN and event.key == pygame.K_SPACE:
-                self._ball.ball_in_center()
-            if event.type == pygame.KEYUP and event.key == pygame.K_SPACE:
-                running = True
-        if running == True:
+        if self._running == True:
             self._ball.move(self._left_paddle, self._right_paddle)
 
         if keys[pygame.K_w]:

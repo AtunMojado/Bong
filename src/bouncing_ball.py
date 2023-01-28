@@ -22,7 +22,7 @@ def bounce():
         if screen_saver.active():
             screen_saver.display()
         screen_saver.update(events)
-        match.update()
+        match.update(events)
         match.display()
         pygame.display.flip()
         time.sleep(0.05)
