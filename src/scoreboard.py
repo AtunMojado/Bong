@@ -13,7 +13,10 @@ class ScoreBoard:
         self._color = color
         self._screen = screen
 
-    def counter(self):
+    def left_counter(self):
+        pass
+
+    def right_counter(self):
         pass
 
     def draw(self):

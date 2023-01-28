@@ -16,10 +16,10 @@ class Match:
 
 
 
-    def __init__(self, screen: pygame.Surface, scoreboard_size: Tuple[int, int] = (80, 60),
-                 paddle_size: Tuple[int, int] = (40, 100),
+    def __init__(self, screen: pygame.Surface, scoreboard_size: Tuple[int, int] = (70, 60),
+                 paddle_size: Tuple[int, int] = (30, 100),
                  margin_to_top: int = 20, margin_to_border: int = 25,
-                 screen_color: Tuple[int, int, int] = (32, 155, 93), ball_position: Tuple[int, int] = (350, 200),
+                 screen_color: Tuple[int, int, int] = (176, 224, 230), ball_position: Tuple[int, int] = (350, 200),
                  ball_speed: Tuple[int, int] = (10, 10)):
 
         self._screen = screen
@@ -29,17 +29,17 @@ class Match:
 
         self._right_paddle = Paddle(left=screen.get_size()[0] - margin_to_border - paddle_size[0],
                                     top=int(screen.get_size()[1] / 2 - paddle_size[1] / 2), width=paddle_size[0],
-                                    height=paddle_size[1], color=(255, 255, 255), speed=8, screen=screen)
+                                    height=paddle_size[1], color=(70, 70, 70), speed=8, screen=screen)
 
         self._ball = Ball(color=(0, 15, 150), radius=11, center= ball_position, speed= ball_speed, screen=screen)
 
         self._right_scoreboard = ScoreBoard(left= int(screen.get_size()[0]/2), top= margin_to_top,
                                             width= scoreboard_size[0], height= scoreboard_size[1],
-                                            result= int, color=(40, 40, 40), screen=screen)
+                                            result= int, color=(255, 0, 0), screen=screen)
 
         self._left_scoreboard = ScoreBoard(left= int(screen.get_size()[0]/2 - scoreboard_size[0]),
                                             top= margin_to_top, width= scoreboard_size[0], height= scoreboard_size[1],
-                                           result= int, color=(60, 60, 60), screen=screen)
+                                           result= int, color=(255, 255, 0), screen=screen)
 
         self._screen_color = screen_color
 
