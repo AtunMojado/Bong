@@ -24,11 +24,6 @@ class Ball:
         self.wall_collision()
         self.paddle_collision(left_paddle, right_paddle)
 
-    def ball_in_center(self):
-        if pygame.display.get_init():
-            self._center[0] == self._screen.get_size()[0] / 2 and self._center[1] == self._screen.get_size()[1] / 2
-
-
     def wall_collision(self):
         #bottom wall
         if self._center[1] + self._radius > self._screen.get_size()[1]:
@@ -41,12 +36,13 @@ class Ball:
     def paddle_collision(self, left_paddle, right_paddle):
         #collisions for left paddle
         if self._center[0] - self._radius < left_paddle.rect.right and left_paddle.rect.top < self._center[1] < left_paddle.rect.bottom:
-            self._speed = (abs(-self._speed[0]), self._speed[1])
+            self._speed = (abs(self._speed[0]), self._speed[1])
 
         #collisions for right paddle
         if self._center[0] + self._radius > right_paddle.rect.left and right_paddle.rect.top < self._center[1] < right_paddle.rect.bottom:
             self._speed = (-abs(self._speed[0]), self._speed[1])
-
+    def change_color(self, color):
+        self._color = color
 
 
 
