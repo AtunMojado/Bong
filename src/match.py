@@ -35,11 +35,11 @@ class Match:
 
         self._right_scoreboard = ScoreBoard(left= int(screen.get_size()[0]/2), top= margin_to_top,
                                             width= scoreboard_size[0], height= scoreboard_size[1],
-                                            result= int, color=(255, 0, 0), screen=screen)
+                                            color=(255, 0, 0), screen=screen)
 
         self._left_scoreboard = ScoreBoard(left= int(screen.get_size()[0]/2 - scoreboard_size[0]),
                                             top= margin_to_top, width= scoreboard_size[0], height= scoreboard_size[1],
-                                           result= int, color=(255, 255, 0), screen=screen)
+                                           color=(255, 255, 0), screen=screen)
 
         self._screen_color = screen_color
 
@@ -67,6 +67,12 @@ class Match:
             self._right_paddle.up()
         if keys[pygame.K_m]:
             self._right_paddle.down()
+
+
+
+
+
+
 
 
 
