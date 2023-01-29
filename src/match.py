@@ -33,13 +33,10 @@ class Match:
 
         self._ball = Ball(color=(0, 15, 150), radius=11, center= ball_position, speed= ball_speed, screen=screen)
 
-        self._right_scoreboard = ScoreBoard(left= int(screen.get_size()[0]/2), top= margin_to_top,
+        self._left_counter = 0
+        self._scoreboard = ScoreBoard(left= int(screen.get_size()[0]/2), top= margin_to_top,
                                             width= scoreboard_size[0], height= scoreboard_size[1],
                                             color=(255, 0, 0), screen=screen)
-
-        self._left_scoreboard = ScoreBoard(left= int(screen.get_size()[0]/2 - scoreboard_size[0]),
-                                            top= margin_to_top, width= scoreboard_size[0], height= scoreboard_size[1],
-                                           color=(255, 255, 0), screen=screen)
 
         self._screen_color = screen_color
 
@@ -68,6 +65,11 @@ class Match:
         if keys[pygame.K_m]:
             self._right_paddle.down()
 
+        self._scoreboard.set_left_counter(number= 1)
+
+
+
+
 
 
 
@@ -83,7 +85,7 @@ class Match:
         self._left_paddle.draw()
         self._right_paddle.draw()
         self._ball.draw()
-        self._left_scoreboard.draw()
-        self._right_scoreboard.draw()
+        self._scoreboard.draw()
+        #self._right_scoreboard.draw()
 
 

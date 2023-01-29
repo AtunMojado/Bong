@@ -3,7 +3,7 @@ from typing import Tuple
 
 from pygame.font import Font
 
-from src.ball import Ball
+
 
 
 
@@ -17,23 +17,25 @@ class ScoreBoard:
         self._rect = pygame.Rect(left, top, width, height)
         self._color = color
         self._screen = screen
-        self._font: Font = pygame.freetype.SysFont('arialunicode', 30)
         self._left_counter = 0
 
     def set_left_counter(self, number: int):
         self._left_counter = number
+        number =
+
+
+
 
     def draw(self):
-        #pygame.draw.rect(self._screen, self._color, self._rect)
 
-        #right scoreboard
+        #left scoreboard
 
         font = pygame.font.SysFont('geneva', 40)
         text = font.render('0', True, 'black', 'yellow')
         text_rect = text.get_rect()
         text_rect.center = (self._screen.get_size()[0] / 2 - 25, self._screen.get_size()[1] / 2 - 150)
 
-        #left scoreboard
+        #right scoreboard
 
         font_2 = pygame.font.SysFont('geneva', 40)
         text_2 = font_2.render('0', True, 'black', 'red')
@@ -43,6 +45,8 @@ class ScoreBoard:
 
         self._screen.blit(text, text_rect)
         self._screen.blit(text_2, text_rect_2)
+
+        # pygame.draw.rect(self._screen, self._color, self._rect)
 
 
 

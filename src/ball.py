@@ -2,6 +2,8 @@ from typing import Tuple, List
 import pygame
 
 from src.paddle import Paddle
+from src.scoreboard import ScoreBoard
+
 
 
 class Ball:
@@ -47,6 +49,15 @@ class Ball:
         #collisions for right paddle
         if self._center[0] + self._radius > right_paddle.rect.left and right_paddle.rect.top < self._center[1] < right_paddle.rect.bottom:
             self._speed = (-abs(self._speed[0]), self._speed[1])
+
+    def goal_left(self, set_left_counter: ScoreBoard):
+        if self._center[0] + self._radius < 0:
+            set_left_counter += 1
+
+
+
+
+
     def change_color(self, color):
         self._color = color
 
