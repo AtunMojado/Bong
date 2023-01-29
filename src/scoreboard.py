@@ -21,17 +21,13 @@ class ScoreBoard:
 
     def set_left_counter(self, number: int):
         self._left_counter = number
-        number =
-
-
-
 
     def draw(self):
 
         #left scoreboard
 
         font = pygame.font.SysFont('geneva', 40)
-        text = font.render('0', True, 'black', 'yellow')
+        text = font.render(str(self._left_counter), True, 'black', 'yellow')
         text_rect = text.get_rect()
         text_rect.center = (self._screen.get_size()[0] / 2 - 25, self._screen.get_size()[1] / 2 - 150)
 

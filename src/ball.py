@@ -16,6 +16,7 @@ class Ball:
         self._speed = speed
         self._color = color
         self._screen = screen
+        self._goal_left = False
 
 
     def draw(self):
@@ -41,6 +42,29 @@ class Ball:
         if self._center[1] - self._radius < 0:
             self._speed = (self._speed[0], abs(self._speed[1]))
 
+        if self._center[0] + self._radius < 0:
+            self._speed = (abs(self._speed[0]), self._speed[1])
+            self._goal_left = True
+
+
+    @property
+    def goal_left(self) -> bool:
+        """
+        Getter to obtain the goal left attribute.
+        :return:
+        """
+        return self._goal_left
+    @goal_left.setter
+    def goal_left(self, goal_left: bool):
+        """
+        Setter to set the goal left attribute.
+        :param goal_left: The new value for goal left
+        :return:
+        """
+        self._goal_left = goal_left
+
+
+
     def paddle_collision(self, left_paddle: Paddle, right_paddle: Paddle):
         #collisions for left paddle
         if self._center[0] - self._radius < left_paddle.rect.right and left_paddle.rect.top < self._center[1] < left_paddle.rect.bottom:
@@ -50,9 +74,6 @@ class Ball:
         if self._center[0] + self._radius > right_paddle.rect.left and right_paddle.rect.top < self._center[1] < right_paddle.rect.bottom:
             self._speed = (-abs(self._speed[0]), self._speed[1])
 
-    def goal_left(self, set_left_counter: ScoreBoard):
-        if self._center[0] + self._radius < 0:
-            set_left_counter += 1
 
 
 

@@ -23,16 +23,12 @@ class Match:
                  ball_speed: Tuple[int, int] = (10, 10)):
 
         self._screen = screen
-
         self._left_paddle = Paddle(left=margin_to_border, top=int(screen.get_size()[1] / 2 - paddle_size[1] / 2),
                                    width=paddle_size[0], height=paddle_size[1], color=(0, 0, 0), speed=8, screen=screen)
-
         self._right_paddle = Paddle(left=screen.get_size()[0] - margin_to_border - paddle_size[0],
                                     top=int(screen.get_size()[1] / 2 - paddle_size[1] / 2), width=paddle_size[0],
                                     height=paddle_size[1], color=(70, 70, 70), speed=8, screen=screen)
-
         self._ball = Ball(color=(0, 15, 150), radius=11, center= ball_position, speed= ball_speed, screen=screen)
-
         self._left_counter = 0
         self._scoreboard = ScoreBoard(left= int(screen.get_size()[0]/2), top= margin_to_top,
                                             width= scoreboard_size[0], height= scoreboard_size[1],
@@ -64,8 +60,10 @@ class Match:
             self._right_paddle.up()
         if keys[pygame.K_m]:
             self._right_paddle.down()
-
-        self._scoreboard.set_left_counter(number= 1)
+        if self._ball.goal_left:
+            self._left_counter += 1
+            self._ball.goal_left = False
+            self._scoreboard.set_left_counter(number=self._left_counter)
 
 
 
