@@ -20,6 +20,12 @@ class Ball:
         pygame.draw.circle(self._screen, self._color, self._center, self._radius)
 
     def move(self, left_paddle: Paddle, right_paddle: Paddle):
+        """
+        Function to move the ball taking into consideration the collisions with the given paddles.
+        :param left_paddle: Paddle on the lef side of the screen
+        :param right_paddle: Paddle on the right side of the screen
+        :return:
+        """
         self._center = (self._center[0] + self._speed[0], self._center[1] + self._speed[1])
         self.wall_collision()
         self.paddle_collision(left_paddle, right_paddle)
@@ -33,7 +39,7 @@ class Ball:
         if self._center[1] - self._radius < 0:
             self._speed = (self._speed[0], abs(self._speed[1]))
 
-    def paddle_collision(self, left_paddle, right_paddle):
+    def paddle_collision(self, left_paddle: Paddle, right_paddle: Paddle):
         #collisions for left paddle
         if self._center[0] - self._radius < left_paddle.rect.right and left_paddle.rect.top < self._center[1] < left_paddle.rect.bottom:
             self._speed = (abs(self._speed[0]), self._speed[1])

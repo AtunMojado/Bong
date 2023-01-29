@@ -1,5 +1,8 @@
 import pygame
 from typing import Tuple
+
+from pygame.font import Font
+
 from src.ball import Ball
 
 
@@ -14,20 +17,37 @@ class ScoreBoard:
         self._rect = pygame.Rect(left, top, width, height)
         self._color = color
         self._screen = screen
-        self._ball = Ball
-        self._font = pygame.freetype.SysFont('Arial', 30)
-       
+        self._font: Font = pygame.freetype.SysFont('arialunicode', 30)
+        self._left_counter = 0
 
-    @property
-    def rect(self) -> pygame.Rect:
-        return self._rect
+    def set_left_counter(self, number: int):
+        self._left_counter = number
+
     def draw(self):
-        pygame.draw.rect(self._screen, self._color, self._rect)
+        #pygame.draw.rect(self._screen, self._color, self._rect)
+
+        #right scoreboard
+
+        font = pygame.font.SysFont('geneva', 40)
+        text = font.render('0', True, 'black', 'yellow')
+        text_rect = text.get_rect()
+        text_rect.center = (self._screen.get_size()[0] / 2 - 25, self._screen.get_size()[1] / 2 - 150)
+
+        #left scoreboard
+
+        font_2 = pygame.font.SysFont('geneva', 40)
+        text_2 = font_2.render('0', True, 'black', 'red')
+        text_rect_2 = text_2.get_rect()
+        text_rect_2.center = (self._screen.get_size()[0] / 2 + 25, self._screen.get_size()[1] / 2 - 150)
 
 
-    def count(self):
-        #font = pygame.font.SysFont('chalkduster.ttf', 72)
-        left_scoreboard = self._font.render('0', True, (0, 0, 0))
+        self._screen.blit(text, text_rect)
+        self._screen.blit(text_2, text_rect_2)
+
+
+
+
+
 
 
 
