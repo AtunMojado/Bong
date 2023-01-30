@@ -17,6 +17,7 @@ class Ball:
         self._color = color
         self._screen = screen
         self._goal_left = False
+        self._goal_right = False
 
 
     def draw(self):
@@ -42,11 +43,16 @@ class Ball:
         if self._center[1] - self._radius < 0:
             self._speed = (self._speed[0], abs(self._speed[1]))
 
+        #left goal
         if self._center[0] + self._radius < 0:
             self._speed = (abs(self._speed[0]), self._speed[1])
             self._goal_left = True
 
+        #right goal
 
+        if self._center[0] - self._radius > self._screen.get_size()[0]:
+            self._speed = (-abs(self._speed[0]), self._speed[1])
+            self._goal_right = True
     @property
     def goal_left(self) -> bool:
         """
@@ -62,6 +68,24 @@ class Ball:
         :return:
         """
         self._goal_left = goal_left
+
+    @property
+    def goal_right(self) -> bool:
+        """
+        Getter to obtain the goal right attribute.
+        :return:
+        """
+        return self._goal_right
+
+    @goal_right.setter
+    def goal_right(self, goal_right: bool):
+        """
+        Setter to set the goal left attribute.
+        :param goal_right: The new value for goal left
+        :return:
+        """
+        self._goal_right = goal_right
+
 
 
 

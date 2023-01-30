@@ -30,6 +30,7 @@ class Match:
                                     height=paddle_size[1], color=(70, 70, 70), speed=8, screen=screen)
         self._ball = Ball(color=(0, 15, 150), radius=11, center= ball_position, speed= ball_speed, screen=screen)
         self._left_counter = 0
+        self._right_counter = 0
         self._scoreboard = ScoreBoard(left= int(screen.get_size()[0]/2), top= margin_to_top,
                                             width= scoreboard_size[0], height= scoreboard_size[1],
                                             color=(255, 0, 0), screen=screen)
@@ -64,6 +65,10 @@ class Match:
             self._left_counter += 1
             self._ball.goal_left = False
             self._scoreboard.set_left_counter(number=self._left_counter)
+        if self._ball.goal_right:
+            self._right_counter += 1
+            self._ball.goal_right = False
+            self._scoreboard.set_right_counter(number=self._right_counter)
 
 
 

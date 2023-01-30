@@ -18,9 +18,12 @@ class ScoreBoard:
         self._color = color
         self._screen = screen
         self._left_counter = 0
+        self._right_counter = 0
 
     def set_left_counter(self, number: int):
         self._left_counter = number
+    def set_right_counter(self, number: int):
+        self._right_counter = number
 
     def draw(self):
 
@@ -34,7 +37,7 @@ class ScoreBoard:
         #right scoreboard
 
         font_2 = pygame.font.SysFont('geneva', 40)
-        text_2 = font_2.render('0', True, 'black', 'red')
+        text_2 = font_2.render(str(self._right_counter), True, 'black', 'red')
         text_rect_2 = text_2.get_rect()
         text_rect_2.center = (self._screen.get_size()[0] / 2 + 25, self._screen.get_size()[1] / 2 - 150)
 
