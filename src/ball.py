@@ -45,14 +45,12 @@ class Ball:
 
         #left goal
         if self._center[0] + self._radius < 0:
-            self._speed = (abs(self._speed[0]), self._speed[1])
             self._goal_left = True
 
         #right goal
-
-        if self._center[0] - self._radius > self._screen.get_size()[0]:
+        if self._center[0] + self._radius > self._screen.get_size()[0]:
             self._speed = (-abs(self._speed[0]), self._speed[1])
-            self._goal_right = True
+            #self._goal_right = True
     @property
     def goal_left(self) -> bool:
         """
@@ -93,6 +91,10 @@ class Ball:
         #collisions for left paddle
         if self._center[0] - self._radius < left_paddle.rect.right and left_paddle.rect.top < self._center[1] < left_paddle.rect.bottom:
             self._speed = (abs(self._speed[0]), self._speed[1])
+        if self._center[1] + self._radius > left_paddle.rect.top and left_paddle.rect.left < self._center[0] < left_paddle.rect.right:
+            self._speed = (-abs(self._speed[0]), -abs(self._speed[1]))
+        if self._center[1] - self._radius < left_paddle.rect.bottom and left_paddle.rect.left < self._center[0] < left_paddle.rect.right:
+            self._speed = (-abs(self._speed[0]), abs(self._speed[1]))
 
         #collisions for right paddle
         if self._center[0] + self._radius > right_paddle.rect.left and right_paddle.rect.top < self._center[1] < right_paddle.rect.bottom:
