@@ -70,16 +70,16 @@ class Match:
         if self._ball.goal_left:
             self._left_counter += 1
             self._running = False
-            self._ball._center = self._ball_position
+            self._ball._center = self._ball_starting_position
             self._ball.goal_left = False
-            self._scoreboard.set_left_counter(number=self._left_counter)
+            #self._scoreboard.set_left_counter(number=self._left_counter)
 
         if self._ball.goal_right:
             self._right_counter += 1
             self._running = False
-            self._ball._center = self._ball_position
+            self._ball._center = self._ball_starting_position
             self._ball.goal_right = False
-            self._scoreboard.set_right_counter(number=self._right_counter)
+            #self._scoreboard.set_right_counter(number=self._right_counter)
 
 
 
@@ -99,7 +99,7 @@ class Match:
         self._left_paddle.draw()
         self._right_paddle.draw()
         self._ball.draw()
-        self._scoreboard.draw()
+        #self._scoreboard.draw()
         #self._right_scoreboard.draw()
 
 
