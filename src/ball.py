@@ -17,6 +17,7 @@ class Ball:
         self._color = color
         self._screen = screen
         self._goal_left = False
+        self._goal_right = False
 
     def set_ball_position(self):
         self._position = (350, 200)
@@ -36,7 +37,6 @@ class Ball:
         self.wall_collision()
         self.paddle_collision(left_paddle, right_paddle)
 
-
     def wall_collision(self):
         #bottom wall
         if self._position[1] + self._radius > self._screen.get_size()[1]:
@@ -50,7 +50,10 @@ class Ball:
             self._speed = (abs(self._speed[0]), self._speed[1])
             self._goal_left = True
 
-
+        #right goal
+        if self._position[0] + self._radius > self._screen.get_size()[0]:
+            self._speed = (-abs(self._speed[0]), self._speed[1])
+            #self._goal_right = True
     @property
     def goal_left(self) -> bool:
         """
@@ -68,6 +71,26 @@ class Ball:
         """
         self._goal_left = goal_left
 
+    @property
+    def goal_right(self) -> bool:
+        """
+        Getter to obtain the goal right attribute.
+        :return:
+        """
+        return self._goal_right
+
+    @goal_right.setter
+    def goal_right(self, goal_right: bool):
+        """
+        Setter to set the goal left attribute.
+        :param goal_right: The new value for goal left
+        :return:
+        """
+        self._goal_right = goal_right
+
+
+
+
     def paddle_collision(self, left_paddle: Paddle, right_paddle: Paddle):
         #collisions for left paddle
         if self._position[0] - self._radius < left_paddle.rect.right and left_paddle.rect.top < self._position[1] < left_paddle.rect.bottom:
@@ -76,6 +99,11 @@ class Ball:
         #collisions for right paddle
         if self._position[0] + self._radius > right_paddle.rect.left and right_paddle.rect.top < self._position[1] < right_paddle.rect.bottom:
             self._speed = (-abs(self._speed[0]), self._speed[1])
+
+
+
+
+
 
     def change_color(self, color):
         self._color = color

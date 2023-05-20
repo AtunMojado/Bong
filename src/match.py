@@ -16,9 +16,10 @@ class Match:
 
 
 
-    def __init__(self, screen: pygame.Surface, scoreboard_size: Tuple[int, int] = (70, 60),
+    def __init__(self,
+                 screen: pygame.Surface,
                  paddle_size: Tuple[int, int] = (30, 100),
-                 margin_to_top: int = 20, margin_to_border: int = 25,
+                 margin_to_border: int = 25,
                  screen_color: Tuple[int, int, int] = (176, 224, 230),
                  ball_position: Tuple[int, int] = (350, 200),
                  ball_speed: Tuple[int, int] = (10, 10)):
@@ -34,13 +35,11 @@ class Match:
                                     height=paddle_size[1], color=(70, 70, 70), speed=8, screen=screen)
         self._ball = Ball(color=(0, 15, 150), radius=11, position=self._ball_starting_position, speed= ball_speed, screen=screen)
         self._left_counter = 0
-        self._scoreboard = ScoreBoard(left= int(screen.get_size()[0]/2), top= margin_to_top,
-                                            width= scoreboard_size[0], height= scoreboard_size[1],
-                                            color=(255, 0, 0), screen=screen)
+        self._right_counter = 0
 
         self._screen_color = screen_color
         self._running = False
-
+        self._screen = screen
 
 
 
@@ -51,28 +50,47 @@ class Match:
 
         keys = pygame.key.get_pressed()
 
-
+        # pressing spacebar, game begins
         if keys[pygame.K_SPACE]:
             self._running = True
 
         if self._running == True:
             self._ball.move(self._left_paddle, self._right_paddle)
 
-            if keys[pygame.K_w]:
-                self._left_paddle.up()
-            if keys[pygame.K_s]:
-                self._left_paddle.down()
-            if keys[pygame.K_n]:
-                self._right_paddle.up()
-            if keys[pygame.K_m]:
-                self._right_paddle.down()
-            if self._ball.goal_left:
-                self._left_counter += 1
-                self._ball.goal_left = False
-                self._scoreboard.set_left_counter(number=self._left_counter)
-                self._ball_starting_position = Ball.set_ball_position(self._ball)
+        # allows you to move the paddles pressing each keys (w,s--n,m)
+        if keys[pygame.K_w]:
+            self._left_paddle.up()
+        if keys[pygame.K_s]:
+            self._left_paddle.down()
+        if keys[pygame.K_n]:
+            self._right_paddle.up()
+        if keys[pygame.K_m]:
+            self._right_paddle.down()
 
-                self._running = False
+        if self._ball.goal_left:
+            self._left_counter += 1
+            self._running = False
+            self._ball._center = self._ball_position
+            self._ball.goal_left = False
+            self._scoreboard.set_left_counter(number=self._left_counter)
+
+        if self._ball.goal_right:
+            self._right_counter += 1
+            self._running = False
+            self._ball._center = self._ball_position
+            self._ball.goal_right = False
+            self._scoreboard.set_right_counter(number=self._right_counter)
+
+
+
+
+
+
+
+
+
+
+
 
 
     def display(self):
