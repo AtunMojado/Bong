@@ -3,14 +3,7 @@ from typing import Tuple
 
 from pygame.font import Font
 
-
-
-
-
-
 class ScoreBoard:
-
-
     def __init__(self, screen: pygame.Surface):
 
         self._screen = screen

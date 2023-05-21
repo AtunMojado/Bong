@@ -1,4 +1,4 @@
-from src.bouncing_ball import bounce
+from src.game import bounce
 
 def main():
     bounce()

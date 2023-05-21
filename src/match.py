@@ -8,23 +8,15 @@ from src.paddle import Paddle
 from src.ball import Ball
 from src.scoreboard import ScoreBoard
 
-
-
-
-
 class Match:
-
-
 
     def __init__(self,
                  screen: pygame.Surface,
-                 paddle_size: Tuple[int, int] = (30, 100),
-                 margin_to_border: int = 25,
+                 paddle_size: Tuple[int, int] = (300, 200),
+                 margin_to_border: int = 20,
                  screen_color: Tuple[int, int, int] = (176, 224, 230),
                  ball_position: Tuple[int, int] = (350, 200),
                  ball_speed: Tuple[int, int] = (10, 10)):
-
-
 
         self._screen = screen
         self._ball_starting_position = ball_position
@@ -33,17 +25,15 @@ class Match:
         self._right_paddle = Paddle(left=screen.get_size()[0] - margin_to_border - paddle_size[0],
                                     top=int(screen.get_size()[1] / 2 - paddle_size[1] / 2), width=paddle_size[0],
                                     height=paddle_size[1], color=(70, 70, 70), speed=8, screen=screen)
-        self._ball = Ball(color=(0, 15, 150), radius=11, position=self._ball_starting_position, speed= ball_speed, screen=screen)
+        self._ball = Ball(color=(0, 15, 150), radius=10, position=self._ball_starting_position, speed= ball_speed, screen=screen)
+
+        self._scoreboard = ScoreBoard(screen)
         self._left_counter = 0
         self._right_counter = 0
 
         self._screen_color = screen_color
         self._running = False
         self._screen = screen
-
-
-
-
 
     def update(self, events: List[Event]):
         """ Updates the state with the given events """
@@ -68,38 +58,26 @@ class Match:
             self._right_paddle.down()
 
         if self._ball.goal_left:
-            self._left_counter += 1
-            self._running = False
-            self._ball._center = self._ball_starting_position
-            self._ball.goal_left = False
-            #self._scoreboard.set_left_counter(number=self._left_counter)
-
-        if self._ball.goal_right:
             self._right_counter += 1
             self._running = False
-            self._ball._center = self._ball_starting_position
+            self._ball_starting_position = self._ball.set_ball_position()
+            self._ball.goal_left = False
+            self._scoreboard.set_right_counter(number=self._right_counter)
+
+        if self._ball.goal_right:
+            self._left_counter += 1
+            self._running = False
+            self._ball_starting_position = self._ball.set_ball_position()
             self._ball.goal_right = False
-            #self._scoreboard.set_right_counter(number=self._right_counter)
-
-
-
-
-
-
-
-
-
-
-
-
+            self._scoreboard.set_left_counter(number=self._left_counter)
 
     def display(self):
         """ Displays the current match """
         self._screen.fill(self._screen_color)
         self._left_paddle.draw()
-        self._right_paddle.draw()
+        #self._right_paddle.draw()
         self._ball.draw()
-        #self._scoreboard.draw()
+        self._scoreboard.draw()
         #self._right_scoreboard.draw()
 
 

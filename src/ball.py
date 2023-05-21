@@ -18,11 +18,10 @@ class Ball:
         self._screen = screen
         self._goal_left = False
         self._goal_right = False
+        self._rect = pygame.Rect(self._position[0] - self._radius, self._position[1] - self._radius, 20, 20)
 
     def set_ball_position(self):
         self._position = (350, 200)
-
-
     def draw(self):
         pygame.draw.circle(self._screen, self._color, self._position, self._radius)
 
@@ -48,10 +47,10 @@ class Ball:
 
         if self._position[0] + self._radius < 0:
             self._speed = (abs(self._speed[0]), self._speed[1])
-            self._goal_left = True
+            #self._goal_left = True
 
         #right goal
-        if self._position[0] + self._radius > self._screen.get_size()[0]:
+        if self._position[0] - self._radius > self._screen.get_size()[0]:
             self._speed = (-abs(self._speed[0]), self._speed[1])
             #self._goal_right = True
     @property
@@ -88,23 +87,23 @@ class Ball:
         """
         self._goal_right = goal_right
 
-
-
-
     def paddle_collision(self, left_paddle: Paddle, right_paddle: Paddle):
         #collisions for left paddle
         if self._position[0] - self._radius < left_paddle.rect.right and left_paddle.rect.top < self._position[1] < left_paddle.rect.bottom:
             self._speed = (abs(self._speed[0]), self._speed[1])
+        #if self._position[0] + self._radius > left_paddle.rect.left and left_paddle.rect.top < self._position[1] < left_paddle.rect.bottom:
+            #self._speed = #(abs(self._speed[0]), self._speed[1])
+        if self._position[1] - self._radius < left_paddle.rect.bottom and left_paddle.rect.left < self._position[0] < left_paddle.rect.right:
+            self._speed = (self._speed[0], abs(self._speed[1]))
+        if self._position[1] + self._radius > left_paddle.rect.top and left_paddle.rect.left < self._position[0] < left_paddle.rect.right:
+            self._speed = (self._speed[0], abs(self._speed[1] * -1))
+
+
+
 
         #collisions for right paddle
-        if self._position[0] + self._radius > right_paddle.rect.left and right_paddle.rect.top < self._position[1] < right_paddle.rect.bottom:
-            self._speed = (-abs(self._speed[0]), self._speed[1])
-
-
-
-
-
-
+        #if self._position[0] + self._radius > right_paddle.rect.left and right_paddle.rect.top < self._position[1] < right_paddle.rect.bottom:
+         #   self._speed = (-abs(self._speed[0]), self._speed[1])
     def change_color(self, color):
         self._color = color
 
