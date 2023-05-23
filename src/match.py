@@ -12,8 +12,8 @@ class Match:
 
     def __init__(self,
                  screen: pygame.Surface,
-                 paddle_size: Tuple[int, int] = (300, 200),
-                 margin_to_border: int = 20,
+                 paddle_size: Tuple[int, int] = (25, 100),
+                 margin_to_border: int = 25,
                  screen_color: Tuple[int, int, int] = (176, 224, 230),
                  ball_position: Tuple[int, int] = (350, 200),
                  ball_speed: Tuple[int, int] = (10, 10)):
@@ -75,7 +75,7 @@ class Match:
         """ Displays the current match """
         self._screen.fill(self._screen_color)
         self._left_paddle.draw()
-        #self._right_paddle.draw()
+        self._right_paddle.draw()
         self._ball.draw()
         self._scoreboard.draw()
         #self._right_scoreboard.draw()
