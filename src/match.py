@@ -12,11 +12,11 @@ class Match:
 
     def __init__(self,
                  screen: pygame.Surface,
-                 paddle_size: Tuple[int, int] = (25, 100),
-                 margin_to_border: int = 25,
+                 paddle_size: Tuple[int, int] = (20, 120),
+                 margin_to_border: int = 20,
                  screen_color: Tuple[int, int, int] = (176, 224, 230),
                  ball_position: Tuple[int, int] = (350, 200),
-                 ball_speed: Tuple[int, int] = (10, 10)):
+                 ball_speed: Tuple[int, int] = (12, 10)):
 
         self._screen = screen
         self._ball_starting_position = ball_position
@@ -25,7 +25,7 @@ class Match:
         self._right_paddle = Paddle(left=screen.get_size()[0] - margin_to_border - paddle_size[0],
                                     top=int(screen.get_size()[1] / 2 - paddle_size[1] / 2), width=paddle_size[0],
                                     height=paddle_size[1], color=(70, 70, 70), speed=8, screen=screen)
-        self._ball = Ball(color=(0, 15, 150), radius=10, position=self._ball_starting_position, speed= ball_speed, screen=screen)
+        self._ball = Ball(color=(0, 15, 150), radius=7, position=self._ball_starting_position, speed= ball_speed, screen=screen)
 
         self._scoreboard = ScoreBoard(screen)
         self._left_counter = 0
@@ -78,6 +78,6 @@ class Match:
         self._right_paddle.draw()
         self._ball.draw()
         self._scoreboard.draw()
-        #self._right_scoreboard.draw()
+
 
 

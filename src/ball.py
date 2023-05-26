@@ -47,7 +47,7 @@ class Ball:
         if abs(self._position[1] + self._radius - left_paddle.rect.top) < collision_tolerance and speed_y > 0 and left_paddle.rect.left < self._position[0] < left_paddle.rect.right:
             speed_y *= -1
             self._speed = (speed_x, speed_y)
-        if abs(self._position[1] + self._radius - left_paddle.rect.bottom) < collision_tolerance and speed_y < 0 and left_paddle.rect.left < self._position[0] < left_paddle.rect.right:
+        if abs(self._position[1] - self._radius - left_paddle.rect.bottom) < collision_tolerance and speed_y < 0 and left_paddle.rect.left < self._position[0] < left_paddle.rect.right:
             speed_y *= -1
             self._speed = (speed_x, speed_y)
         if abs(self._position[0] + self._radius - left_paddle.rect.left) < collision_tolerance and speed_x > 0 and left_paddle.rect.top < self._position[1] < left_paddle.rect.bottom:
@@ -61,7 +61,7 @@ class Ball:
         if abs(self._position[1] + self._radius - right_paddle.rect.top) < collision_tolerance and speed_y > 0 and right_paddle.rect.left < self._position[0] < right_paddle.rect.right:
             speed_y *= -1
             self._speed = (speed_x, speed_y)
-        if abs(self._position[1] + self._radius - right_paddle.rect.bottom) < collision_tolerance and speed_y < 0 and right_paddle.rect.left < self._position[0] < right_paddle.rect.right:
+        if abs(self._position[1] - self._radius - right_paddle.rect.bottom) < collision_tolerance and speed_y < 0 and right_paddle.rect.left < self._position[0] < right_paddle.rect.right:
             speed_y *= -1
             self._speed = (speed_x, speed_y)
         if abs(self._position[0] + self._radius - right_paddle.rect.left) < collision_tolerance and speed_x > 0 and right_paddle.rect.top < self._position[1] < right_paddle.rect.bottom:
