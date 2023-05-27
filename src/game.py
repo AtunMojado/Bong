@@ -9,6 +9,7 @@ def bounce():
     size = (700, 400)
     MENU_BG_COLOR = (10, 170, 0)
     BUTTON_COLOR = (0, 0, 100)
+    #font = pygame.font.Font('assets/fonts/AtariClassic.ttf', 20)
     screen = pygame.display.set_mode(size)
     button_width, button_height = (300, 90)
 
@@ -36,6 +37,8 @@ def bounce():
         if start_game == False:
             screen.fill(MENU_BG_COLOR)
             start_button.draw()
+            start_button.text('START GAME')
+
             if left_click:
                 start_game = True
             pygame.display.flip()
