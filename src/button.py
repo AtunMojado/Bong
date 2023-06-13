@@ -2,8 +2,8 @@ import pygame
 from typing import Tuple
 pygame.init()
 font = pygame.font.Font('freesansbold.ttf', 42)
-margin_left_text = 10
-margin_top_text = 25
+margin_left_text = 14
+margin_top_text = 28
 class Button():
     def __init__(self, screen: pygame.Surface, color: Tuple[int, int, int], left: int, top: int, width: int, height: int):
         self._rect = pygame.Rect(left, top, width, height)
