@@ -14,18 +14,19 @@ class Match:
                  screen: pygame.Surface,
                  paddle_size: Tuple[int, int] = (20, 120),
                  margin_to_border: int = 20,
-                 screen_color: Tuple[int, int, int] = (176, 224, 230),
+                 screen_color: Tuple[int, int, int] = (110,139,61),
                  ball_position: Tuple[int, int] = (350, 200),
                  ball_speed: Tuple[int, int] = (12, 10)):
-
+        left_paddle_color = (192,255,62)
+        right_paddle_color = (124,252,0)
         self._screen = screen
         self._ball_starting_position = ball_position
         self._left_paddle = Paddle(left=margin_to_border, top=int(screen.get_size()[1] / 2 - paddle_size[1] / 2),
-                                   width=paddle_size[0], height=paddle_size[1], color=(0, 0, 0), speed=8, screen=screen)
+                                   width=paddle_size[0], height=paddle_size[1], color=left_paddle_color, speed=8, screen=screen)
         self._right_paddle = Paddle(left=screen.get_size()[0] - margin_to_border - paddle_size[0],
                                     top=int(screen.get_size()[1] / 2 - paddle_size[1] / 2), width=paddle_size[0],
-                                    height=paddle_size[1], color=(70, 70, 70), speed=8, screen=screen)
-        self._ball = Ball(color=(0, 15, 150), radius=7, position=self._ball_starting_position, speed= ball_speed, screen=screen)
+                                    height=paddle_size[1], color=right_paddle_color, speed=8, screen=screen)
+        self._ball = Ball(color=(0, 60, 0), radius=7, position=self._ball_starting_position, speed=ball_speed, screen=screen)
 
         self._scoreboard = ScoreBoard(screen)
         self._left_counter = 0

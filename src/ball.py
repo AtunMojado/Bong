@@ -36,35 +36,36 @@ class Ball:
         self.wall_collision()
         self.paddle_collision(left_paddle, right_paddle)
     def paddle_collision(self, left_paddle: Paddle, right_paddle: Paddle):
-        collision_tolerance = 10
+        collision_tolerance = 10 #problem to solve (?), if collision tolerance < 10, ball doesnt collide
         speed_x = self._speed[0]
         speed_y = self._speed[1]
-
+        #left_side_plus_speed = False
         #collisions for left paddle
         if abs(self._position[0] - self._radius - left_paddle.rect.right) < collision_tolerance and speed_x < 0 and left_paddle.rect.top < self._position[1] < left_paddle.rect.bottom:
-            speed_x *= -1
+            speed_x *= -1.15
             self._speed = (speed_x, speed_y)
-        if abs(self._position[1] + self._radius - left_paddle.rect.top) < collision_tolerance and speed_y > 0 and left_paddle.rect.left < self._position[0] < left_paddle.rect.right:
+
+        elif abs(self._position[1] + self._radius - left_paddle.rect.top) < collision_tolerance and speed_y > 0 and left_paddle.rect.left < self._position[0] < left_paddle.rect.right:
             speed_y *= -1
             self._speed = (speed_x, speed_y)
-        if abs(self._position[1] - self._radius - left_paddle.rect.bottom) < collision_tolerance and speed_y < 0 and left_paddle.rect.left < self._position[0] < left_paddle.rect.right:
+        elif abs(self._position[1] - self._radius - left_paddle.rect.bottom) < collision_tolerance and speed_y < 0 and left_paddle.rect.left < self._position[0] < left_paddle.rect.right:
             speed_y *= -1
             self._speed = (speed_x, speed_y)
-        if abs(self._position[0] + self._radius - left_paddle.rect.left) < collision_tolerance and speed_x > 0 and left_paddle.rect.top < self._position[1] < left_paddle.rect.bottom:
+        elif abs(self._position[0] + self._radius - left_paddle.rect.left) < collision_tolerance and speed_x > 0 and left_paddle.rect.top < self._position[1] < left_paddle.rect.bottom:
             speed_x *= -1
             self._speed = (speed_x, speed_y)
 
         #collisions for right paddle
-        if abs(self._position[0] - self._radius - right_paddle.rect.right) < collision_tolerance and speed_x < 0 and right_paddle.rect.top < self._position[1] < right_paddle.rect.bottom:
-            speed_x *= -1
+        elif abs(self._position[0] - self._radius - right_paddle.rect.right) < collision_tolerance and speed_x < 0 and right_paddle.rect.top < self._position[1] < right_paddle.rect.bottom:
+            speed_x *= -1.15
             self._speed = (speed_x, speed_y)
-        if abs(self._position[1] + self._radius - right_paddle.rect.top) < collision_tolerance and speed_y > 0 and right_paddle.rect.left < self._position[0] < right_paddle.rect.right:
+        elif abs(self._position[1] + self._radius - right_paddle.rect.top) < collision_tolerance and speed_y > 0 and right_paddle.rect.left < self._position[0] < right_paddle.rect.right:
             speed_y *= -1
             self._speed = (speed_x, speed_y)
-        if abs(self._position[1] - self._radius - right_paddle.rect.bottom) < collision_tolerance and speed_y < 0 and right_paddle.rect.left < self._position[0] < right_paddle.rect.right:
+        elif abs(self._position[1] - self._radius - right_paddle.rect.bottom) < collision_tolerance and speed_y < 0 and right_paddle.rect.left < self._position[0] < right_paddle.rect.right:
             speed_y *= -1
             self._speed = (speed_x, speed_y)
-        if abs(self._position[0] + self._radius - right_paddle.rect.left) < collision_tolerance and speed_x > 0 and right_paddle.rect.top < self._position[1] < right_paddle.rect.bottom:
+        elif abs(self._position[0] + self._radius - right_paddle.rect.left) < collision_tolerance and speed_x > 0 and right_paddle.rect.top < self._position[1] < right_paddle.rect.bottom:
             speed_x *= -1
             self._speed = (speed_x, speed_y)
 
@@ -81,6 +82,7 @@ class Ball:
         if self._position[1] - self._radius < 0:
             self._speed = (self._speed[0], abs(self._speed[1]))
 
+        #left_goal
         if self._position[0] + self._radius < 0:
             self._speed = (abs(self._speed[0]), self._speed[1])
             self._goal_left = True
