@@ -3,19 +3,19 @@ import time
 import pygame
 from src.button import Button
 from src.match import Match
-from src.screen_fade import ScreenFade
+from src.init_fade import InitFade
 
 def bounce():
     pygame.init()
     size = (700, 400)
     screen = pygame.display.set_mode(size)
-    MENU_BG_COLOR = (10, 170, 0)
+    MENU_BG_COLOR = (90,120,100)#(10, 170, 0)
 
     BUTTON_COLOR = (0, 0, 100)
     STARTBUTTON_TOP_MARGIN = 150
     EXITBUTTON_BOTTOM_MARGIN = 50
 
-    INTRO_FADE_COLOR = (10, 170, 0)
+    INTRO_FADE_COLOR = (90,120,100)
     INTRO_FADE_LEFT_POS = 0
     INTRO_FADE_TOP_POS = 0
     INTRO_FADE_WIDTH = screen.get_size()[0]
@@ -26,7 +26,7 @@ def bounce():
 
     button_width, button_height = (300, 90)
 
-    intro_fade = ScreenFade(screen=screen, left=INTRO_FADE_LEFT_POS, top=INTRO_FADE_TOP_POS, width=INTRO_FADE_WIDTH, height=INTRO_FADE_HEIGHT, color=INTRO_FADE_COLOR, speed=INTRO_FADE_SPEED)
+    intro_fade = InitFade(screen=screen, left=INTRO_FADE_LEFT_POS, top=INTRO_FADE_TOP_POS, width=INTRO_FADE_WIDTH, height=INTRO_FADE_HEIGHT, color=INTRO_FADE_COLOR, speed=INTRO_FADE_SPEED)
 
     start_button = Button(screen=screen, color=BUTTON_COLOR, left=screen.get_size()[0]//2 - button_width//2, top= screen.get_size()[1]//2 - STARTBUTTON_TOP_MARGIN,
                           width=button_width, height=button_height)
